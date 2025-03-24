@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import registerImg from "../images/register.jpg";
+import registerImg from "../images/register-preview.png";
+import "./Register.css";
+import { motion } from "framer-motion";
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -42,8 +44,9 @@ const Register = () => {
     };
 
     return (
-        <Container fluid className="d-flex vh-100 align-items-center justify-content-center bg-light-gray">
+        <Container fluid className="d-flex vh-100 align-items-center justify-content-center bg-light-gray register-form">
             <Row className="w-100 d-flex align-items-center justify-content-center">
+                {/* Form Section */}
                 <Col xs={12} md={6} lg={5} className="d-flex align-items-center justify-content-center">
                     <Card className="shadow-lg p-4 w-100" style={{ maxWidth: "470px" }}>
                         <Card.Body>
@@ -96,11 +99,33 @@ const Register = () => {
                     </Card>
                 </Col>
 
-                <Col xs={12} md={6} lg={5} className="d-flex align-items-center justify-content-center">
-                    <img src={registerImg} alt="Register" className="img-fluid" style={{ maxWidth: "100%", height: "auto" }} />
+                {/* Animated Image Section */}
+                <Col xs={12} md={6} lg={5} className="d-flex align-items-center justify-content-center motion-image">
+                    <motion.img
+                        src={registerImg}
+                        alt="Register"
+                        className="img-fluid moving-image"
+                        style={{ maxWidth: "80%", height: "auto", position: "relative" }}
+                        animate={{
+                            x: [0, 30, -30, 20, -20, 10, -10, 0],  // Moves within a limited area (left-right)
+                            y: [0, -20, 20, -15, 15, -10, 10, 0]   // Moves within a limited area (top-bottom)
+                        }}
+                        transition={{
+                            duration: 10, // Smooth, slow movement
+                            repeat: Infinity,
+                            repeatType: "mirror",
+                            ease: "easeInOut"
+                        }}
+                        whileHover={{
+                            scale: 1.1, // Zoom in when hovered
+                            transition: { duration: 0.3, ease: "easeInOut" }
+                        }}
+                    />
                 </Col>
             </Row>
         </Container>
+
+
     );
 };
 export default Register;

@@ -3,6 +3,8 @@ import { AuthContext } from "../context/AuthContext";
 import { Container, Form, Button, Card, Row, Col, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../images/login.svg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { motion } from "framer-motion";
 import "./Login.css";
 
 const Login = () => {
@@ -10,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -29,12 +32,12 @@ const Login = () => {
     };
 
     return (
-        <Container fluid className="d-flex vh-100 align-items-center justify-content-center bg-light-gray login-section">
+        <Container fluid className="d-flex vh-100 align-items-center justify-content-center bg-light login-section">
             <Row className="w-100 d-flex align-items-center justify-content-center">
-                <Col xs={12} md={6} lg={5} className="d-flex align-items-center justify-content-center">
-                    <Card className="shadow-lg p-4 w-100" style={{ maxWidth: "470px" }}>
+                <Col xs={12} md={8} lg={5} className="d-flex align-items-center justify-content-center">
+                    <Card className="shadow-lg p-4 w-100 login-card">
                         <Card.Body>
-                            <h2 className="text-center mb-4">Login</h2>
+                            <h2 className="text-center mb-4">Login Your Account</h2>
                             {error && <Alert variant="danger">{error}</Alert>}
                             {success && <Alert variant="success">{success}</Alert>}
                             <Form onSubmit={handleSubmit}>
@@ -50,13 +53,18 @@ const Login = () => {
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Enter password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
+                                    <div className="password-field">
+                                        <Form.Control
+                                            type={showPassword ? "text" : "password"}
+                                            placeholder="Enter password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                        <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </span>
+                                    </div>
                                 </Form.Group>
                                 <Button variant="primary" type="submit" className="w-100">
                                     Login
@@ -71,8 +79,28 @@ const Login = () => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col xs={12} md={6} lg={5} className="d-flex align-items-center justify-content-center">
-                    <img src={loginImg} alt="Login Illustration" className="img-fluid" style={{ maxWidth: "80%", height: "auto" }} />
+
+                <Col xs={12} md={8} lg={5} className="d-flex align-items-center justify-content-center d-none d-md-flex image-field">
+                    <motion.img
+                        src={loginImg}
+                        alt="Login Illustration"
+                        className="img-fluid moving-image"
+                        style={{ maxWidth: "75%", height: "auto", position: "relative" }}
+                        animate={{
+                            x: [0, 20, -20, 15, -15, 10, -10, 0],
+                            y: [0, -15, 15, -10, 10, -5, 5, 0]
+                        }}
+                        transition={{
+                            duration: 12,
+                            repeat: Infinity,
+                            repeatType: "mirror",
+                            ease: "easeInOut"
+                        }}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: { duration: 0.4, ease: "easeInOut" }
+                        }}
+                    />
                 </Col>
             </Row>
         </Container>

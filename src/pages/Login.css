@@ -1,55 +1,50 @@
-.login-container {
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+.login-section {
+  background: #f8f9fa;
+  padding: 20px;
+}
+
+.login-card {
+  max-width: 420px;
+  width: 100%;
+}
+.image-field{
+  margin-top: 60px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field .eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.moving-image {
+  max-width: 80%;
+  transition: transform 0.4s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .image-field{
+    margin-top: 30px;
   }
-  
-  /* Left Side - Login Form */
-  .login-card {
-    width: 400px;
-    border-radius: 10px;
+  .moving-image {
+      max-width: 60%;
   }
-  
-  .app-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
+
+}
+
+@media (max-width: 576px) {
+  .image-field{
+    margin-top: 20px;
   }
-  
-  /* Input Fields */
-  .input-group-text {
-    background-color: #e9ecef;
-    border-left: none;
+  .moving-image {
+      max-width: 50%;
   }
-  
-  .input-group input {
-    border-right: none;
-  }
-  
-  /* Sign In Button */
-  button[type="submit"] {
-    background-color: #007bff;
-    border: none;
-    transition: 0.3s ease-in-out;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-    transform: scale(1.02);
-  }
-  
-  /* Right Side - Background Image */
-  .login-bg {
-    height: 70vh;
-  }
-  /* .login-bg img{
-    height:100%;
-  } */
-  .small-link {
-    color: #007bff;
-    text-decoration: none;
-    transition: 0.3s;
-  }
-  
-  .small-link:hover {
-    text-decoration: underline;
-  }
-  
+}
