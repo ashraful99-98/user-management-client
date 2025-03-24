@@ -4,16 +4,21 @@ import { Table, Button, Alert } from "react-bootstrap";
 import { FaTrash, FaLock, FaUnlock } from "react-icons/fa";
 import "./UserTable.css";
 
-const UserTable = () => {
+const UserTable = ({ isAuthenticated }) => {
     const [users, setUsers] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [message, setMessage] = useState({ type: "", text: "" });
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/users", { withCredentials: true })
-            .then((res) => setUsers(res.data.sort((a, b) => new Date(b.lastLogin) - new Date(a.lastLogin))))
-            .catch((err) => showMessage("error", "Error fetching users"));
-    }, []);
+        if (isAuthenticated) {
+            axios.get("http://localhost:8000/api/users", { withCredentials: true })
+                .then((res) => setUsers(res.data.sort((a, b) => new Date(b.lastLogin) - new Date(a.lastLogin))))
+                .catch(() => showMessage("error", "Error fetching users"));
+        } else {
+            setUsers([]);
+        }
+    }, [isAuthenticated]);
+
 
     const showMessage = (type, text) => {
         setMessage({ type, text });
@@ -37,7 +42,6 @@ const UserTable = () => {
         setSelectedUsers(isChecked ? users.map(user => user._id) : []);
     };
 
-    // Handle block, unblock, delete actions
     const handleAction = async (action) => {
         if (selectedUsers.length === 0) {
             showMessage("error", "No users selected!");
@@ -74,20 +78,23 @@ const UserTable = () => {
                 withCredentials: true
             });
 
-            setUsers(users.map(user =>
-                selectedUsers.includes(user._id)
-                    ? { ...user, isBlocked: action === "block" }
-                    : user
-            ));
+            // Update state to remove deleted users
+            if (action === "delete") {
+                setUsers(prevUsers => prevUsers.filter(user => !selectedUsers.includes(user._id)));
+            } else {
+                setUsers(users.map(user =>
+                    selectedUsers.includes(user._id)
+                        ? { ...user, isBlocked: action === "block" }
+                        : user
+                ));
+            }
 
             setSelectedUsers([]); // Clear selection after action
-
             showMessage("success", `Users ${action}ed successfully!`);
         } catch (error) {
             showMessage("error", `Failed to ${action} users`);
         }
     };
-
     return (
         <div className="container table-item">
             {/* Alert Messages */}

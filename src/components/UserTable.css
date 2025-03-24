@@ -1,3 +1,19 @@
 .table-item{
     margin-top: 160px;
 }
+
+@media (max-width: 768px) {
+    .table-item {
+        padding: 10px;
+    }
+
+    .table th, .table td {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .table th:first-child, .table td:first-child {
+        width: 50px; 
+        text-align: center;
+    }
+}
