@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This frontend will include:
+✅ React with Bootstrap for UI
+✅ User Authentication (Login, Registration)
+✅ Admin Panel with User Management Table
+✅ Sorting by Last Login Time
+✅ Multi-Selection with Checkboxes
+✅ Toolbar for Blocking, Unblocking, and Deleting Users
+✅ Handling Blocked and Deleted Users
+"# user-management-client" 
