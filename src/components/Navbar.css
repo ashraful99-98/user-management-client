@@ -1,0 +1,37 @@
+/* Fancy Navbar Styles */
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .nav-brand:hover {
+    color: #f39c12 !important;
+  }
+  
+  .nav-link-custom {
+    color: white !important;
+    font-size: 1rem;
+    margin-left: 15px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .nav-link-custom:hover {
+    color: #f1c40f !important;
+    transform: scale(1.1);
+  }
+  
+  /* Logout Button */
+  .logout-btn {
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ff4757;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.8);
+  }
+  

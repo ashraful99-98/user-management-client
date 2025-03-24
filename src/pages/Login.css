@@ -1,0 +1,58 @@
+/* .login-section{
+  margin-top: 200px;
+} */
+.login-container {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  }
+  
+  /* Left Side - Login Form */
+  .login-card {
+    width: 400px;
+    border-radius: 10px;
+  }
+  
+  .app-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Input Fields */
+  .input-group-text {
+    background-color: #e9ecef;
+    border-left: none;
+  }
+  
+  .input-group input {
+    border-right: none;
+  }
+  
+  /* Sign In Button */
+  button[type="submit"] {
+    background-color: #007bff;
+    border: none;
+    transition: 0.3s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+  }
+  
+  /* Right Side - Background Image */
+  .login-bg {
+    height: 70vh;
+  }
+  /* .login-bg img{
+    height:100%;
+  } */
+  .small-link {
+    color: #007bff;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .small-link:hover {
+    text-decoration: underline;
+  }
+  
