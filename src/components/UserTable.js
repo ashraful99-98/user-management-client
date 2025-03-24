@@ -9,23 +9,21 @@ const UserTable = () => {
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [message, setMessage] = useState({ type: "", text: "" });
 
-    // Fetch users from backend
     useEffect(() => {
         axios.get("http://localhost:8000/api/users", { withCredentials: true })
             .then((res) => setUsers(res.data.sort((a, b) => new Date(b.lastLogin) - new Date(a.lastLogin))))
             .catch((err) => showMessage("error", "Error fetching users"));
     }, []);
 
-    // Show success or error messages
     const showMessage = (type, text) => {
         setMessage({ type, text });
 
         setTimeout(() => {
-            setMessage({ type: "", text: "" }); // Auto-hide after 3s
+            setMessage({ type: "", text: "" });
         }, 3000);
     };
 
-    // Toggle user selection
+
     const toggleSelection = (userId) => {
         setSelectedUsers((prevSelected) =>
             prevSelected.includes(userId)
@@ -84,7 +82,6 @@ const UserTable = () => {
 
             setSelectedUsers([]); // Clear selection after action
 
-            // Show success message
             showMessage("success", `Users ${action}ed successfully!`);
         } catch (error) {
             showMessage("error", `Failed to ${action} users`);
