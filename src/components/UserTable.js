@@ -140,7 +140,18 @@ const UserTable = ({ isAuthenticated }) => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.isBlocked ? "Blocked" : "Active"}</td>
+                            {/* <td>{user.isBlocked ? "blocked" : "active"}</td> */}
+                            <div>
+                                <td style={{
+                                    backgroundColor: user.isBlocked ? "#f8d7da" : "#d4edda",
+                                    color: user.isBlocked ? "#721c24" : "#155724",
+                                    padding: "2px 5px",
+                                    borderRadius: "5px"
+                                }}>
+                                    {user.isBlocked ? "blocked" : "active"}
+                                </td>
+                            </div>
+
                             <td>{new Date(user.lastLogin).toLocaleString()}</td>
                         </tr>
                     ))}
